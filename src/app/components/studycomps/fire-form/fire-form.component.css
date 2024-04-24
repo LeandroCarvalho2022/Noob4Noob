@@ -1,0 +1,72 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    align-items: center;
+    justify-content: center;
+    background: aliceblue;
+}
+.box{
+    padding: 10px;
+    color: #fff;
+}
+.title{
+    display:flex;
+    justify-content: center;
+}
+.explanation{
+    text-align: center;
+}
+input{
+    color: black;
+}
+.inputs{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+form{
+    background: #2c2e88;
+    padding: 10px;
+}
+
+button{
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #33b249;
+}
+button:hover{
+    background-color: green;
+    transition: .4s;
+}
+.binds{
+    border-radius: 10px;
+    background: #0d2136;
+    min-width: 25vh;
+    padding: 16px 13px;
+    color: #fff;
+}
+.lessonPart{
+    display: flex;    
+    max-width: 65vh;  
+}
+.boxBlackTable{
+    border-radius: 2px;
+    min-height: 20vh;
+    background: #111111;
+    color: #fff;
+    font-family: cursive;
+    max-width: 40vh;
+    padding: 10px;
+    border: 5px solid #6c2c00;
+}
+.btnNP{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row mb-8">
+      <a [routerLink]="['']">
+        <mat-icon style="font-size: 40px; height: fit-content; width: fit-content;">arrow_back</mat-icon>
+      </a>
+      <p style="font-size: 30px;">Dados do usuário</p>
+    </div>
+    <div class="profile">
+      <div class="perf">
+        <img [src]=" userData?.photoURL ? userData?.photoURL : '/assets/images/logo.jpg'">
+      </div>
+      <div class="data">
+        <h2 style="text-transform: uppercase;">{{ userData?.displayName }}</h2>
+        <p style="color: #9fa9af;">Email da conta {{ userData?.email }}</p>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="settings">
+      <div class="user mt-16">
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome de usuário</mat-label>
+            <input style="color: #fff" matInput formControlName="displayName" placeholder="Nome de usuário">
+            <mat-error *ngIf="profileForm.get('displayName')?.invalid && profileForm.get('displayName')?.touched">
+                Máximo de 9 letras.
+              </mat-error>
+          </mat-form-field>
+          <span class="mb-4">Clique no button abaixo para editar foto.</span>
+          <button type="button" mat-raised-button (click)="fileInput.click()">Editar foto de perfil</button>
+          <input hidden (change)="onFileSelected($event)" #fileInput type="file">
+          <a [routerLink]="['/forgot']" class="mt-6">
+            <p class="italic" style="font-weight: 300; color: #fff; opacity: .55;">Mudar senha / Esqueci a senha</p>
+          </a>
+          <div class="btn mt-16 flex flex-col gap-4">
+            <button type="submit" [disabled]="profileForm.invalid" mat-flat-button>Salvar</button>
+            <button type="button" class="cancel" (click)="logout()">Logout</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+
+  

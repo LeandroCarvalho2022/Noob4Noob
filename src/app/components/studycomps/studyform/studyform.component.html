@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+
+<div class="container flex justify-center items-center" style="min-height: 110vh;">
+  <div class="w-fit max-w-xs mt-4" style=" background-image : url('/assets/images/logo.jpg');
+    background-size: contain;">
+    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 w-fit">
+      <!-- Dropdown menu id="dropdown" -->
+      <div >
+        <div>
+          <ng-container >
+            <ng-container >
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="value">Title</label>
+              <input class="mb-4" type="text" name="title" placeholder="Titulo do amigo" [(ngModel)]="title" >
+            </ng-container>
+              <ng-container >
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="value">Explique a postagem ai pilantra</label>
+                <input class="mb-4" type="text" name="content" placeholder=":D" [(ngModel)]="content" >
+              </ng-container>
+              <ng-container >
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="value">Url</label>
+                <input class="mb-4" type="text" name="github" placeholder="Url do repo" [(ngModel)]="github" >
+              </ng-container>
+              <ngx-dropzone (change)="onSelect($event)">
+                <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                  <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-preview>
+              </ngx-dropzone>
+              <div class="mt-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">Carousel Images</label>
+                <div class="file-iput" >
+                <input type="file" style="width: 150px;" multiple (change)="onCarouselSelect($event)" />
+                </div>
+              </div>
+            </ng-container>
+        </div>
+        <div class="mt-4" style="display: flex; justify-content: space-between;">
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="uploadPost()" >Postar</button>
+          <button class="bg-green-500 hover:bg-green-900 text-white font-bold  px-4 rounded" (click)="cancel()">Teste</button>
+        </div>
+      </div>

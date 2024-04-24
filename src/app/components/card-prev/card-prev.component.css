@@ -1,0 +1,11 @@
+.hidd{
+    display: none !important;
+}
+@media screen and (max-width: 450px){
+    .hidd{
+        display: flex !important;
+    }
+    .meme{
+        font-size : 2.35rem !important;
+    }
+}

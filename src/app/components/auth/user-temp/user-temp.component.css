@@ -1,0 +1,109 @@
+
+h1,h2,h3,h4, p {
+    color: 	#d2eaf9;
+    margin: 0 !important;
+}
+span{
+    color: #fff;
+    font-size: 5vw;
+}
+mat-icon{
+    color: #d2eaf9;
+}
+.row{
+    display: flex;
+    align-items: center;
+}
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    min-width: 100%;
+    background-color: #2E2E2E;
+}
+.profile{
+    background-color: #373737;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 10px;
+    align-items : center;
+    box-shadow: 1px 2px 3px #262222;
+}
+.perf{
+    display:flex;
+    align-items : center;
+    flex-direction: column;
+}
+img{
+    border-radius: 1000px;
+    width: 75px;
+    height: 58px;
+}
+.line{
+    width: 75%;
+    border: 1px solid white;
+    
+    box-shadow: 2px 5px 5px #111111;
+}
+.settings{
+    background-color: #373737;
+    min-width: 100%;
+    min-height: 70%;
+    
+    box-shadow: 1px 2px 5px #262222;
+}
+.user{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+mat-label{
+    color: #9fa9af;
+}
+mat-form-field{
+    width: 80%;
+}
+
+::placeholder{
+    color: #fff !important;
+  }
+  
+  ::ng-deep .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{
+    text-shadow: 0px 0px 4px #9fa9af !important;
+    color: #CDF1EC !important;
+  }
+  
+  :host ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__notch{
+    border-color : #d2eaf9 !important;
+    border-right: none;
+  }
+  :host ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__leading{
+    border-color : #d2eaf9 !important;
+  
+  }
+  :host ::ng-deep .mdc-text-field--outlined .mdc-notched-outline__trailing{
+    border-color : #d2eaf9 !important;
+  }
+@media screen and (min-width: 768px){
+    .profile{
+        min-width: 65% !important;
+    }
+    .settings{
+        min-width: 65% !important;
+    }
+    .line{
+        min-width: 65% !important;
+    }
+    span{
+        font-size: 1.75vw;
+    }
+}

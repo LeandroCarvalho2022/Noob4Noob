@@ -1,0 +1,29 @@
+<div class="modal">
+    <h1 mat-dialog-title>Prévia do card que será inserido na pagina homestudy</h1>
+<div mat-dialog-content>
+  <p></p>
+  <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16  ">
+    <div class="lg:flex shadow-xl">
+        <div *ngFor="let imageUrl of data.imageUrls">
+            <img [src]="imageUrl" alt="é precisum add a img pra ver né">
+          </div>
+
+        <div class="flex flex-col justify-between py-6 lg:mx-6" >
+            <a class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
+                {{ data.inputText }}</a>
+            
+            <span class="text-sm text-gray-500 dark:text-gray-300">{{this.dataTime}}</span>
+        </div>
+    </div>
+
+    
+</div>
+</div>
+<div mat-dialog-actions class="buttonspace">
+  <button class="bg-red-500 hover:bg-red-900 text-white 
+  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" mat-button (click)="onNoClick()">Cancelar</button>
+  <button class="bg-blue-500 hover:bg-blue-900 text-white 
+  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
+  mat-button [mat-dialog-close]="true" (click)="onAdd()">Adicionar</button>
+</div>
+</div>

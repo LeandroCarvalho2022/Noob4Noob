@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+
+<!-- CARD COMPONENT -->
+<div class="max-w-sm mx-auto bg-indigo-400 mt-4 mb-4 flex p-6 bg-white rounded-lg shadow-xl">
+  <div class="flex-shrink-0">
+    <img src="/assets/images/news.png" alt="" class="h-12 w-12" />
+  </div>
+  <div class="ml-6 pt-1" >
+    <h4 class="text-xl text-gray-900">Bem Vindo ao meu Work Log</h4>
+    <p class="text-base text-gray-600 italic">Aqui eu vou postar tudo que venho fazendo</p>
+  </div>
+</div>
+
+<div class="flex items-center" [style]="bgCards">
+  <div class="container ml-auto mr-auto flex flex-wrap items-start">
+    <div class="w-full pl-5 lg:pl-2 mb-4 mt-4">
+    </div>
+    <div class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2" *ngFor="let post of posts$ | async">
+      <div  class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
+        <figure class="mb-2">
+          <img src="{{post.image}}" alt="" class="h-64 ml-auto mr-auto" />
+        </figure>
+        <div [style]="bgCard" class="cardCTT rounded-lg p-4 bg-purple-700 flex flex-col" > 
+          <div>
+            <h5 class="text-white leading-none">
+              {{post.title}}
+            </h5>
+            <span class="text-xs text-gray-400 leading-none">{{post.content}}</span>
+          </div>
+          <div class="link" [style.display]="post.github === '' ? 'none' : 'block' ">
+            <a href="">Saiba mais</a>
+          </div>
+          <div class="flex items-center">
+            <div class="text-lg text-white font-light">
+            </div>
+            <button style="justify-content: center;
+            align-items: center;" 
+            class="rounded-full bg-purple-900 text-white hover:bg-white hover:text-purple-900 hover:shadow-xl 
+            focus:outline-none w-10 h-10 flex ml-auto transition duration-300">
+            <mat-icon (click)="openDialog(post.id, post.carouselImgs)" >inventory_2</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

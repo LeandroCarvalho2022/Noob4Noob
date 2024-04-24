@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <form (ngSubmit)="onSubmit()">
+        <div class="box">
+            <div class="title mt-4">
+                <h3>FireForm</h3>
+            </div>
+            <div class="explanation mt-4">
+                <p>Este formulário irá enviar os dados recebidos dentro dos campos abaixo para o banco de dados do
+                    firebase</p>
+            </div>
+            <div class="inputs mt-4">
+                <label for="input1" class="mt-2">1° campo</label>
+                <input name="input1" [(ngModel)]="inputs.input1" type="text" class="mt-2" placeholder="Digite pfv">
+                <label for="input2" class="mt-2">2° campo</label>
+                <input name="input2" [(ngModel)]="inputs.input2" type="text" class="mt-2" placeholder="Digite pfv">
+            </div>
+        </div>
+        <div class="btn mt-2">
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+
+    <div class="binds mt-4" *ngIf="formSubmitted">
+        <em>Ao final da aula, no seu banco de dados os valores devem ser parecidos com essa estrutura</em>
+        <p>text1: {{inputs.input1}}</p>
+        <p>text2: {{inputs.input2}}</p>
+    </div>
+
+    <div class="lessonPart mt-6 mb-6" *ngIf="formSubmitted">
+        <div class="btnNP" (click)="prevLesson()" [style.display]="hTDIndex == 0 ? 'none': 'flex'">
+            <mat-icon>arrow_back_ios_new</mat-icon>
+        </div>
+        <div class="boxBlackTable">
+            <h1 class="titlu">Como faz isso ai tio?</h1>
+            <hr>
+            <div class="blackTable">
+                <div class="conteudoBTable">
+                    <p style="text-align: center;">{{ howTodo[hTDIndex].text }}</p>
+                    <p style="text-align: center;">{{ howTodo[hTDIndex].aaa }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="btnNP" (click)="nextLesson()" [style.display]="hTDIndex == 11 ? 'none': 'flex'">
+            <mat-icon>arrow_forward_ios</mat-icon>
+        </div>
+    </div>
+</div>

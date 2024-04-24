@@ -1,0 +1,173 @@
+<body class="bg-gray-100 antialiased font-sans">
+    <header class="lg:px-16 px-8 shadow-md py-4 md:py-0 top-0" [ngStyle]="{ 'background': theme[selectedTheme]['--nav-color'], 'color': theme[selectedTheme]['--text-color'], 
+    'height': theme[selectedTheme]['--navbar-height'] }">
+        <div class="container mx-auto flex flex-wrap items-center">
+            <div class="flex-1 flex justify-between items-center">
+                <a [routerLink]="['/study']" routerLinkActive="router-link-active"
+                    class="text-xl font-semibold text-green-100 hover:text-white tracking-normal">Voltar pra pág de
+                    estudos</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto h-screen text-gray-800 flex flex-wrap"
+        style="height: fit-content; min-height: 120vh;">
+        <div class="w-full lg:w-9/12 flex-0 p-5 bg-white shadow-lg rounded-b-lg">
+
+            <div class="picker">
+                <h1>{{texts[index].presentation}}</h1>
+                <label for="picker">
+                    <h3>{{texts[index].resume}}</h3>
+                </label>
+                <div class="flex justify-center" ngx-colors-trigger [(ngModel)]="input1" [style.color]="input1">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon"
+                        *ngIf="index === 1">{{texts[index].icon}}
+                    </mat-icon>
+                </div>
+                <label for="example-palette-button">{{texts[index].review}}</label>
+                <img src="{{texts[index].img}}">
+                <h3 style="font-size: 18px;">{{texts[index].why}}</h3>
+
+                <h3 style="font-size: 18px;">{{texts[index].here}}</h3>
+            </div>
+            <p></p>
+            <section *ngIf="index === 4">
+
+                <header style="justify-content: center; display: flex;">
+                    <h1>Editar cores</h1>
+                </header>
+                <div class="icontog">
+                    <mat-slide-toggle (click)="toggleTheme()"></mat-slide-toggle>
+                    <h1 [hidden]="isDarkMode">Light</h1>
+                    <h1 [hidden]="!isDarkMode">Dark</h1>
+                </div>
+                <mat-grid-list cols="2" rowHeight="85px">
+                    <mat-grid-tile rowspan="1">
+                        <ngx-colors ngx-colors-trigger [(ngModel)]="theme[selectedTheme]['--nav-color']"></ngx-colors>
+                        <div class="pickers">
+                            <p>Cor da barra de navegação</p>
+                            <input matInput [(ngModel)]="theme[selectedTheme]['--nav-color']">
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile rowspan="1">
+                        <ngx-colors ngx-colors-trigger [(ngModel)]="theme[selectedTheme]['--text-color']"></ngx-colors>
+                        <div class="pickers">
+                            <p>Cor do texto</p>
+                            <input matInput [(ngModel)]="theme[selectedTheme]['--text-color']">
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile rowspan="1">
+                        <ngx-colors ngx-colors-trigger
+                            [(ngModel)]="theme[selectedTheme]['--footer-color']"></ngx-colors>
+                        <div class="pickers">
+                            <p>Cor da barra final do site (footer)</p>
+                            <input matInput [(ngModel)]="theme[selectedTheme]['--footer-color']">
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile rowspan="1">
+                        <ngx-colors ngx-colors-trigger [(ngModel)]="theme[selectedTheme]['--bg-color']"></ngx-colors>
+                        <div class="pickers">
+                            <p>Cor de fundo botôes de ação</p>
+                            <input matInput [(ngModel)]="theme[selectedTheme]['--bg-color']">
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile rowspan="1">
+                        <ngx-colors ngx-colors-trigger
+                            [(ngModel)]="theme[selectedTheme]['--buttons-color']"></ngx-colors>
+                        <div class="pickers">
+                            <p>Cor dos action buttons</p>
+                            <input matInput [(ngModel)]="theme[selectedTheme]['--buttons-color']">
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile rowspan="1">
+                        <div class="pickers">
+                            <p>Tamanho da navbar ps:Colocar 'px' no final do numero</p>
+                            <input matInput [(ngModel)]="theme[selectedTheme]['--navbar-height']">
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile rowspan="1">
+                        <div class="pickers">
+                            <p>Tamanho do footer ps:Colocar 'px' no final do numero</p>
+                            <input matInput [(ngModel)]="theme[selectedTheme]['--footer-height']">
+                        </div>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <div class="text">
+                    <button mat-raised-button (click)="addColors()">Salvar mudanças</button>
+                </div>
+            </section>
+            <div class="finals">
+                <h1>{{texts[index].final}}</h1>
+                <div class="icontog" *ngIf="index === 5">
+                    <mat-slide-toggle (click)="toggleTheme()"></mat-slide-toggle>
+                    <h1 [hidden]="isDarkMode">Light</h1>
+                    <h1 [hidden]="!isDarkMode">Dark</h1>
+                </div>
+                <h1>{{texts[index].howto}}</h1>
+                <img src="{{texts[index].imgEx}}">
+                <h1>{{texts[index].text1}}</h1>
+                <img src="{{texts[index].imgEx1}}">
+                <img src="{{texts[index].imgEx4}}">
+                <hr>
+                <h1>{{texts[index].text2}}</h1>
+                <p class="italic">{{texts[index].explain}}</p>
+                <img src="{{texts[index].imgEx3}}">
+                <img src="{{texts[index].imgEx2}}">
+                <p class="italic">{{texts[index].consideration}}</p>
+
+            </div>
+        </div>
+        <div class="w-full lg:w-3/12 flex-0 p-5" [ngStyle]="{ 'background-color': theme[selectedTheme]
+        ['--bg-color'],'color': theme[selectedTheme]['--text-color']}">
+            <ul class="">
+                <h1>Botões de ação</h1>
+                <li class="mr-2">
+                    <a class="text-center block rounded py-2 px-4 text-gray-600 mb-2"
+                        [ngStyle]="{'background-color': theme[selectedTheme]['--buttons-color']}"
+                        (click)="genContent()">Next</a>
+                </li>
+                <li class="mr-2">
+                    <a class="text-center block rounded py-2 px-4 text-gray-600 mb-2"
+                        [ngStyle]="{'background-color': theme[selectedTheme]['--buttons-color']}"
+                        (click)="backContent()">Voltar</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <footer class="" >
+        <div class="container mx-auto flex flex-wrap">
+            <div class="w-full md:w-3/6">
+
+                <div class="text-green-100 mb-3 md:mb-0 pr-0 md:pr-10" [ngStyle]="{'color': theme[selectedTheme]['--text-color']}">
+                    <a href="" class="text-xl font-semibold text-green-100 hover:text-white tracking-normal"></a>
+                    <p class="text-sm mt-2"></p>
+                </div>
+            </div>
+        </div>
+    </footer> -->
+    <footer class="lg:px-16 px-8 py-6 pb-10 shadow-md" [ngStyle]="{ 'background-color': theme[selectedTheme]['--footer-color'],
+    'height':theme[selectedTheme]['--footer-height'], 'color': theme[selectedTheme]['--text-color']}">
+        <div class="flex flex-wrap">
+            <div class="w-full lg:w-2/5">
+                <p class="text-gray-600 hidden lg:block mt-4 p-0 lg:pr-12">
+                    Mais uma vez obrigado por visitar o site, qualquer dúvida estou a disposição!
+                </p>
+            </div>
+
+            <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
+                <h3 class="font-semibold text-gray-700 mb-4"> Me encontre aqui </h3>
+                <ul>
+                    <li><a class="text-sky-400 after:content-['_↗'] ..." href="https://github.com/LeandroCarvalho2022"
+                            target="_blank">Github</a></li>
+                    <li><a class="text-sky-400 after:content-['_↗'] ..." href="https://maway-o43q.vercel.app/"
+                            target="_blank">CV</a> </li>
+                    <li><a class="text-sky-400 after:content-['_↗'] ..."
+                            href="https://www.linkedin.com/in/leandro-carvalho-09481121b/" target="_blank">Linkedin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+
+

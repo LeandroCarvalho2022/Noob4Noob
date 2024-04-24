@@ -1,0 +1,180 @@
+<!-- component -->
+<div class="max-w-screen-lg mx-auto">
+  <main class="mt-10">
+    <div class="mb-4 md:mb-0 w-full mx-auto relative">
+      <div class="px-4 lg:px-0">
+        <h2 class="text-4xl font-semibold text-gray-800 leading-tight">
+          {{cards[currentCardIndex].intro}}
+        </h2>
+        <p href="#" class="py-2 inline-flex items-center justify-center mb-2">
+          {{cards[currentCardIndex].intro2}}
+        </p>
+      </div>
+      <button id="cardgenerator" (click)="generateCard()"
+        class="px-2 py-1 text-gray-100 bg-green-700 flex w-full items-center justify-center rounded">
+        Clique aqui!
+        <i class='bx bx-user-plus ml-2'></i>
+      </button>
+    </div>
+
+    <div class="flex flex-col lg:flex-row lg:space-x-12">
+      <div class="px-4 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
+        <p class="pb-6">{{ cards[currentCardIndex].bodycontent }}</p>
+        <div class="hidd" style="display: flex;">
+          <button [cdkCopyToClipboard]="getContentForId(cards[currentCardIndex].id)">
+            <img src="/assets/images/svg/copy.svg" style="width: 30px; height: 30px;"></button>
+          <p style="font-size: 0.650rem;" class="italic rounded font-bold pl-2">*No mobile ficou horrivel as img então clica aq e copia o codigo</p>
+        </div>
+
+        <img src="{{cards[currentCardIndex].img}}" alt="{{cards[currentCardIndex].id}}" class="w-full object-contain lg:rounded"
+          style="height: fit-content;" />
+        <div class="border-l-4 border-gray-500 pl-4 mb-6 italic rounded mt-8">
+          {{ cards[currentCardIndex].contentdisplay }}
+        </div>
+        <h1 class="text-6xl text-gray-800 font-semibold mb-4 mt-4">{{cards[currentCardIndex].resumotitle}}</h1>
+        <h2 class="text-2xl text-gray-800 font-semibold mb-4 mt-4">{{cards[currentCardIndex].resumo}}</h2>
+      </div>
+
+      <div class="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
+        <div class="p-4 border-t border-b md:border md:rounded">
+          <p class="text-gray-700 py-3">
+            Meu queridon se quiser voltar pra página de tutos.
+          </p>
+          <a [routerLink]="['/study']"><button
+              class="px-2 py-1 text-gray-100 bg-green-700 flex w-full items-center justify-center rounded">
+              AquiQueVolta
+              <i class='bx bx-user-plus ml-2'></i>
+            </button></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <div *ngIf="currentCardIndex === 3">
+    <div class="border-l-4 border-gray-500 pl-4 mb-6 italic rounded mt-8">
+      <h2 class="first-line:uppercase first-line:tracking-widest
+      first-letter:text-3xl">Olha só quem chegou até o final do tuto que lindo(a), então toma mais conteúdo na sua cara
+      </h2>
+      <div class="form-container mt-12 flex justify-center">
+        <form (ngSubmit)="onSubmit()" #form="ngForm">
+          <div class="form-group">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="textInput1">
+              Digita alguma coisa ae
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 
+              text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+              id="textInput1" type="text"
+              name="text1" [(ngModel)]="formData.text1">
+          </div>
+          <div class="form-group">
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="textInput1">
+                Aqui também
+              </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 
+              text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+              id="textInput2" type="text"
+                name="text2" [(ngModel)]="formData.text2">
+            </div>
+          </div>
+          <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold 
+          py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Add Valores</button>
+          <br>
+          <button style="display: none;" class="bg-blue-500 hover:bg-blue-700 text-white 
+          font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-8" (click)="genCard()"
+            [style.display]="generateCardButtonDisplay">Generate Card</button>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="cardData" class="flex justify-center" [style.display]="cardDisplayStyle">
+      <table class="table-fixed shadow-xl">
+        <thead>
+          <tr>
+            <th class="w-1/2 px-4 py-2">1° input</th>
+            <th class="w-1/4 px-4 py-2">2° input</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border px-4 py-2">{{cardData.text1}}</td>
+            <td class="border px-4 py-2">{{cardData.text2}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="flex justify-center" *ngFor="let bon of bonus">
+        <div class="grid-cols-1 w-full">
+          <div class="flex flex-col lg:flex-row lg:space-x-12">
+            <div class="px-4 lg:px-0 mt-12 text-gray-700 text-lg leading-relaxed w-full lg:w-3/4">
+              <p class="pb-6">{{bon.inputs1}}</p>
+              <em class="font-bold">{{bon.inputs2}}</em>
+              <p class="mt-4 pb-6">{{bon.inputs3}}</p>
+              <h3 class="pb-6 mt-4 font-semibold">{{bon.inputs4}}</h3>
+              <em class="font-bold">SIMMM (Eu tb)</em>
+              <p class="mt-4 pb-6">{{bon.inputs5}}</p>
+              <h2 class="text-6xl meme font-semibold text-gray-800 hover:underline dark:text-white ">{{bon.meme}}</h2>
+              <h1 class="mt-4 text-2xl pb-6"><em>{{bon.inputs6}}</em></h1>
+              <p class="mt-6 pb-6 text-2xl">{{bon.inputs7}}</p>
+              <h4>{{bon.inputs8}}</h4>
+              <h1 class="mt-4 text-2xl pb-6"><em>{{bonusidx[newidex].bonus}}</em></h1>
+              <p class="mt-6 pb-6 text-2xl">{{bonusidx[newidex].bodyct}}</p>
+              <button (click)="bonusCards()"
+                class="px-2 py-1 text-gray-100 bg-green-700 flex w-full items-center justify-center rounded">
+                Clica aqui 
+                <i class='bx bx-user-plus ml-2'></i>
+              </button>
+              <h1 class="text-2xl text-gray-800 font-semibold mb-4 mt-4">{{bonusidx[newidex].anwser1}}</h1>
+              <div class="hidd" style="display: flex;">
+                <button [cdkCopyToClipboard]="gCBId(bonusidx[newidex].id)">
+                  <img src="/assets/images/svg/copy.svg" style="width: 30px; height: 30px;"></button>
+                <p style="font-size: 0.650rem;" class="italic rounded font-bold pl-2">*No mobile ficou horrivel as img então clica aq e copia o codigo</p>
+              </div>
+              <img src="{{bonusidx[newidex].img}}" class="w-full object-contain lg:rounded mt-10" style="height: fit-content;" />
+              
+              <h1 class="text-2xl text-gray-800 font-semibold mb-4 mt-4">{{bonusidx[newidex].anwser3}}</h1>
+              <div class="hidd" style="display: flex;" [(ngModel)]="value">
+                <button [cdkCopyToClipboard]="value">
+                  <img src="/assets/images/svg/copy.svg" style="width: 30px; height: 30px;"></button>
+                <p style="font-size: 0.650rem;" class="italic rounded font-bold pl-2">*No mobile ficou horrivel as img então clica aq e copia o codigo</p>
+              </div>
+              <img src="{{bonusidx[newidex].img2}}"  class="w-full object-contain lg:rounded mt-10" style="height: fit-content;" />
+              <div class="border-l-4 border-gray-500 pl-4 mb-6 italic rounded mt-8">
+                <h1 class="text-2xl text-gray-800 font-semibold mb-4 mt-4">{{bonusidx[newidex].anwser}}</h1>
+              </div>
+              <h2 class="text-2xl text-gray-800 font-semibold mb-4 mt-4">{{bonusidx[newidex].resumao}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  <!-- footer -->
+  <footer class="border-t mt-12 pt-12 pb-32 px-4 lg:px-0">
+    <div class="flex flex-wrap">
+      <div class="w-full lg:w-2/5">
+        <p class="text-gray-600 hidden lg:block mt-4 p-0 lg:pr-12">
+          Mais uma vez obrigado por visitar o site, qualquer dúvida estou a disposição
+        </p>
+      </div>
+
+      <div class="w-full mt-6 lg:mt-0 md:w-1/2 lg:w-1/5">
+        <h6 class="font-semibold text-gray-700 mb-4"> Mídia </h6>
+        <ul>
+          <li><a class="text-sky-400 after:content-['_↗'] ..." 
+            href="https://github.com/LeandroCarvalho2022"
+             target="_blank">Github</a></li>
+          <li><a class="text-sky-400 after:content-['_↗'] ..." 
+            href="https://maway-o43q.vercel.app/"
+             target="_blank">CV</a> </li>
+          <li><a class="text-sky-400 after:content-['_↗'] ..." 
+            href="https://www.linkedin.com/in/leandro-carvalho-09481121b/"
+             target="_blank">Linkedin</a> </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+

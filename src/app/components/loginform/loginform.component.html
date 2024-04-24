@@ -1,0 +1,40 @@
+
+<body >
+  <div class="back">
+    <button><mat-icon (click)="back()" class="mb-6" >undo</mat-icon></button>
+</div>
+    <div style="width: 50%;"  class="flex items-center  w-full justify-center">   
+      <div class="w-full bg-white w-4/6 rounded shadow-lg m-4">
+      <img class="rounded-full" src="/assets/images/logo.jpg" alt="">     
+        <form  class="mb-4" >
+          <div class="mb-4 " >
+            <label for="email"  class="block  mb-1">Email</label>
+            <input [(ngModel)]="email" class="w-full border rounded p-2 " type="email" name="email" id="email" placeholder="Email">
+          </div>
+          <div class="mb-4 md:w-full">
+            <label for="password" class="block  mb-1">Password</label>
+            <input [(ngModel)]="psw" class="w-full border rounded p-2 outline-none focus:shadow-outline" type="password" name="psw" id="password" placeholder="Password">
+          </div>
+          <div class="forgot">
+            <span style="color: #fff;" [routerLink]="['/forgot']">Esqueceu a senha?</span>
+          </div>
+          <div class="btns">
+            <div class='g-sign-in-button' (click)="byGoogle(email)" >
+              <div class=content-wrapper>
+              <div class='logo-wrapper'>  
+                <img src='https://developers.google.com/identity/images/g-logo.png'>
+                </div>  
+                <span class='text-container'> 
+                  <span>Entrar com Google</span>
+                </span>
+              </div>  
+            </div>   
+            <button (click)="onSubmit()" type="submit" class="btn bg-green-500 hover:bg-green-700 mb-2 text-white uppercase text-sm font-semibold px-4 py-2 rounded">Login</button>
+            <button *ngIf="isLoggedIn" (click)="logout()" class="btn bg-red-600 hover:bg-red-800 text-white uppercase text-sm font-semibold px-4 py-2 rounded">Logout</button>
+          </div>
+        </form>
+    </div>
+  </div>
+</body>
+
+

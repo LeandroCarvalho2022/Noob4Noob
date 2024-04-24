@@ -1,0 +1,33 @@
+h5{
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px 
+}
+
+.md:container {
+    display: flex;
+    flex-direction: column;
+    background-color: #463947;
+    padding: 10px;
+}
+.gth{
+    box-shadow: 5px 3px 5px black;
+    border-radius: 12px;
+    padding: 10px 5px;
+    background-color: #6A706E;
+    text-shadow: 2px 1px 3px black;
+    color: #fff
+}
+span{
+    font-size: 16px;
+    color: #fff;
+}
+.cardCTT{
+    height: 35vh;
+    overflow: hidden;
+
+}
+.cardCTT:hover{
+    transition: .3s;
+    height: fit-content;
+}

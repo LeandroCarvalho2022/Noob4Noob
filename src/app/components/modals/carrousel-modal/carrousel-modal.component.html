@@ -1,0 +1,43 @@
+<!--     
+    
+    <mat-dialog-content>
+    
+    <p>The metadata for a component class associates it with a template that defines a view. A
+    template combines ordinary HTML with Angular directives and binding markup that allow Angular
+    to modify the HTML before rendering it for display.</p>
+  
+    <p>The metadata for a service class provides the information Angular needs to make it available
+    to components through Dependency Injection (DI).</p>
+  
+    <p>An app's components typically define many views, arranged hierarchically. Angular provides
+    the Router service to help you define navigation paths among views. The router provides
+    sophisticated in-browser navigational capabilities.</p>
+  </mat-dialog-content>
+
+
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+  </mat-dialog-actions> -->
+
+<section>
+    <h1 style="color: black;">TITLE</h1>
+    <ngx-slick-carousel class="carousel" #slickModal [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let imgUrl of carouselImgs$ | async" class="slide">
+            <img [src]="imgUrl" alt="" width="100% " >
+        </div>
+    </ngx-slick-carousel>
+    <div class="btn">
+        <button class="btn-prev" (click)="prev()" >
+            <mat-icon>
+                arrow_back_ios_new
+            </mat-icon>
+        </button>
+        <button class="btn-next" (click)="next()">
+            <mat-icon style="box-shadow: -2px 2px 3px black;">
+                arrow_forward_ios
+            </mat-icon>
+        </button>
+    </div>
+    <section>

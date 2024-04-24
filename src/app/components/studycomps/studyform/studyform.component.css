@@ -1,0 +1,13 @@
+.container{
+    background-image : url('/assets/images/logo.jpg');
+    background-repeat : no-repeat;
+    background-size: cover;
+    width : 100%;
+    opacity : 0.75;
+}
+
+@media screen and (max-width: 450px;){
+    .photosinput{
+        
+    }
+}

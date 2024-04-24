@@ -1,0 +1,128 @@
+<header>
+  <div id="info">
+    <h1 id="name">Forum de discussões</h1>
+    <nav>
+      <ul>
+        <li><a [routerLink]="['']" routerLinkActive="router-link-active"><i class="fa fa-home"></i>Home</a></li>
+        <li *ngIf="isAdmin" class="addPost"><i (click)="openDialog()" class="fa fa-edit"> Criar post</i></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main>
+  <aside>
+    <h2>Bem vindo ao forúm Garai</h2>
+    <p>Regras:
+      Não spammar, não vender nada, nada de posts maliciosos ou links sem a supervisão do ADM.
+      <br>
+      Pode comentar mto ai que a database é forte rsrs.
+    </p>
+  </aside>
+  <div id="content">
+    <div class="commentsec" *ngFor="let post of postagens | async" >
+      <article>
+        <div class="sec px-6 py-4">
+          <div class="postmain flex items-center pt-3">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+          </div>
+        </div>
+        <div class="participateBtn mb-2" >
+          <span class="overline text-2xl italic" (click)="showComment()">Comentários</span>
+          <button (click)="showComment()" mat-mini-fab style="background-color: rgb(56, 117, 117);"
+          aria-label="Example icon button with a menu icon">
+          <mat-icon>comment</mat-icon>
+        </button>
+        </div>
+        <hr class="mb-4">
+        <div class="userscomments mb-4" id="scrollbar1" [hidden]="comentInput"
+         *ngFor="let cmnt of postComments[post.postID] | async">
+          <div class="row mb-2">
+            <div class="removeBtn">
+              <button  *ngIf="isCurrentUserCommentOwner(cmnt)" mat-mini-fab style="width: 30px; height: 30px;
+                background-color: rgb(56, 117, 117); "
+                (click)="removeComment(post.postID, cmnt.commentID)"><mat-icon style="font-size: 23px;">delete</mat-icon>
+              </button>
+            </div>
+            <div class="user">
+              <div class="photo"><img [src]="cmnt.photoURL"></div>
+              <div class="prof">
+                <h4 class="text3" style="font-weight: 900; margin: 0.35rem;">&#64;{{ cmnt.displayName }}</h4>
+                <span class="italic text-sm opacity-45">{{cmnt.date | firestoreDate | date: 'dd/MM/yyyy HH:mm'}}</span>
+              </div>
+            </div>
+            <div class="comment">
+              <div class="replieBtn">
+                <span class="italic text-sm opacity-75">Comentou: </span>
+                <a>
+                  <mat-icon class="text-white" (click)="toggleReplyInput($event, cmnt.commentID);">reply</mat-icon>
+                </a>
+              </div>
+              <p class="usercmnt" style="margin-bottom: 12px;">{{ cmnt.comment }} </p>
+              <span class="w-full flex justify-center mb-2" *ngIf="cmnt.replies && cmnt.replies.length > 0"
+               (click)="toggleUsersReplies()">{{ UserReplies ? 'Ver menos' : 'Ver mais respostas' }}</span>
+              <div *ngIf="UserReplies">
+                <div class="user-rply" *ngFor="let reply of cmnt.replies" >
+                  <section>
+                    <div class="user-inner">
+                      <div class="repliPhoto"><img [src]="reply.photoURL"></div>
+                    </div>
+                    <div class="user-details">
+                      <p>&#64;{{reply.displayName}}</p>
+                    </div>
+                  </section>
+                  <div class="replies mb-4">
+                    <div class="removeBtn" *ngIf="isCurrentUserOwnerReplie(reply)">
+                      <button mat-mini-fab style="background-color: rgb(56, 117, 117);
+                          width: 22px;
+                          height: 22px;
+                          padding-top: 7px;"
+                       (click)="removeReplie(post.postID, cmnt.commentID, reply.replyID)">
+                        <mat-icon style="font-size: 18px;">delete</mat-icon></button>
+                    </div>
+                    <div class="date">
+                      <span class="italic text-sm opacity-45">{{reply.date | firestoreDate | date : 'dd/MM/yyyy HH:mm'}}</span>
+                    </div>
+                    <p style="display: flex; justify-content: flex-start ;">
+                      <em style="font-style: italic; opacity: 0.45;">&#64;{{cmnt.displayName}} - </em>
+                      {{reply.reply}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div id="replyInput-{{ cmnt.commentID }}" class="replys bg-white-100" *ngIf="showReplyInputMap[cmnt.commentID]">
+            <form (ngSubmit)="reply(post.postID, cmnt.commentID, replyText, cmnt)">
+              <span class="italic text-sm opacity-75" style="color: #fff;">Respondendo ao: {{cmnt.displayName}}</span>
+              <div id="post">
+                <div id="FAQ">
+                  <input type="text" [(ngModel)]="replyText" name="re" class="newFAQ"
+                    placeholder="@{{cmnt.displayName}}">
+                </div>
+                <div id="user-img">
+                  <button type="submit"><mat-icon style="margin: 0;">send</mat-icon></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="some" [hidden]="comentInput">
+          <form (ngSubmit)="onSubmit(post.postID, comments)">
+            <span class="mt-4 italic text-2xl" style="color: #fff;">Adicione um comentário</span>
+            <div id="post">
+              <div id="FAQ">
+                <input type="text" [(ngModel)]="comments" name="comments" class="newFAQ"
+                  placeholder="What's on your mind?">
+              </div>
+              <div id="user-img">
+                <button type="submit"><mat-icon style="margin: 0;">send</mat-icon></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </article>
+    </div>
+  </div>
+</main>

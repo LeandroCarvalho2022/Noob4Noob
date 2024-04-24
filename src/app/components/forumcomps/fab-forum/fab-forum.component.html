@@ -1,0 +1,15 @@
+<form (ngSubmit)="uploadTopic()">
+    <div class="box">
+        <div class="header mb-6">
+            <label for="title" class="mb-2 font-semibold">Titulo da FAQ</label>
+            <input [(ngModel)]="title" name="title" class="title" type="text" placeholder="Title">
+        </div>
+    
+        <div class="content">
+            <label for="news" class="mb-4 font-semibold">Conteúdo da FAQ</label>
+            <textarea  [(ngModel)]="content" name="content" id="news" cols="30" rows="10" placeholder="Conteúdo"></textarea>
+        </div>
+        <div class="cfnBtn"><button type="submit" class= "mt-4">Postar FAQ</button></div>
+        
+    </div>
+</form>

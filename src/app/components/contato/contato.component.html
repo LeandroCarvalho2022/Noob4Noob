@@ -1,0 +1,45 @@
+
+<div class="main">
+    <div class="letters">
+        <div class="back">
+            <button (click)="back()"><mat-icon class="mb-6" style="color: black;">undo</mat-icon></button>
+        </div>
+        <h1 class="letteiro">CONTATO</h1>
+        <div class="cttBox">
+            <form (submit)="sendEmail($event)">
+                <div class="ctt" style="background-color: #1e1e1e;">
+                    <input [(ngModel)]="name" class="mb-6" placeholder="Nome" name="to_name" type="text">
+
+                    <input [(ngModel)]="email" class="mb-10" placeholder="Email" name="froml_email" type="email">
+
+                    <textarea [(ngModel)]="text" placeholder="Clica aq e manda oq queres hablar comigu" name="message" cols="30" rows="5"></textarea>
+
+                    <input style="
+                    border: 0; background-color: #111111b3;" class="text-1xl mt-10 shadow-solid-primary
+                    border-2 border-black py-2 px-2
+                    transition-colors ease-out
+                    duration-500 text-white
+                    from-gray-900 to-black
+                    hover:from-white hover:to-gray-100 
+                    hover:text-black hover:border-black
+                    " type="submit" value="ENVIAR">
+
+                    <!-- <button (click)="sendEmail($event)" >Enviar</button> -->
+                </div>
+            </form>
+            <div class="col" style="background-color: aliceblue;">
+                <h2 class="mb-4" style="text-decoration: underline;">Info de Contato</h2>
+                <p>Curitiba-Pr</p>
+                <p>Telefone(WPP): </p>
+                <p style="padding: 3px;">(41)997820285</p>
+                <h3>Socials</h3>
+                <div class="socials">
+                    <a href="https://github.com/LeandroCarvalho2022" target="_blank" class="fa fa-github"></a>
+                    <a href="https://www.linkedin.com/in/leandro-carvalho-09481121b/" target="_blank" class="fa fa-linkedin"></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

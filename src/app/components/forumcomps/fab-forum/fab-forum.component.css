@@ -1,0 +1,52 @@
+.box{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #222831;
+}
+.header{
+    
+    display: flex;
+    flex-direction: column;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    background-color:  #31363F;
+    color: #EEEEEE;
+}
+textarea{
+    background-color: #31363F;
+    color: #EEEEEE;
+}
+
+.cfnBtn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+button{
+    background: #EEEEEE;
+    padding: 4px;
+    box-shadow: -6px 6px 1px #111111;
+}
+button:hover{
+    background: #111111;
+    box-shadow: -6px 6px 1px #EEEEEE;
+    color: #fff;
+    transition: 0.4s;
+}
+
+
+
+::placeholder {
+    color: #EEEEEE;
+    opacity: 1; /* Firefox */
+  }
+  
+  ::-ms-input-placeholder { /* Edge 12-18 */
+    color: #EEEEEE;
+  }
